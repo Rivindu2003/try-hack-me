@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order <%= order.id %> - Intentionally Vulnerable Lab</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body class="ivl-body">
+  <a class="ivl-skip-link" href="#ivl-main">Skip to main content</a>
+  <div class="ivl-shell">
+    <header class="ivl-header">
+      <div class="ivl-header-inner">
+        <a class="ivl-brand" href="/">
+          <img src="/public/assets/logo.svg" alt="Intentionally Vulnerable Lab logo">
+          <span>Intentionally Vulnerable Lab</span>
+        </a>
+        <nav class="ivl-nav" aria-label="Primary">
+          <ul class="ivl-nav-list">
+            <li><a class="ivl-nav-link" href="/">Home</a></li>
+            <li><a class="ivl-nav-link" href="/login">Login</a></li>
+            <li><a class="ivl-nav-link" href="/comments">Comments</a></li>
+            <li><a class="ivl-nav-link" href="/orders/1">Orders</a></li>
+            <li><a class="ivl-nav-link" href="/upload">Upload</a></li>
+            <li><a class="ivl-nav-link" href="/public/flag_easy.txt">Easy Flag</a></li>
+          </ul>
+          <button type="button" class="ivl-theme-toggle" data-ivl-theme-toggle aria-pressed="false">
+            <span class="ivl-theme-toggle__icon" data-ivl-theme-icon><img src="/public/assets/icon-moon.svg" alt="" aria-hidden="true"></span>
+            <span class="ivl-theme-toggle__label" data-ivl-theme-label>Dark mode</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="ivl-main" id="ivl-main">
+      <section class="ivl-card ivl-stack" aria-labelledby="ivl-order-title">
+        <div>
+          <h1 class="ivl-heading-xl" id="ivl-order-title">Order <%= order.id %></h1>
+          <p class="ivl-muted">This endpoint leaks cross-account data because ownership checks are missing - classic IDOR fodder.</p>
+        </div>
+        <div class="ivl-order-details">
+          <div>
+            <span class="ivl-muted">Owner user id</span>
+            <div><%= order.user_id %></div>
+          </div>
+          <div>
+            <span class="ivl-muted">Description</span>
+            <div><%= order.description %></div>
+          </div>
+        </div>
+        <div class="ivl-cta-row">
+          <a class="ivl-pill" href="/orders/<%= Number(order.id) + 1 %>">Next ID -></a>
+          <a class="ivl-pill" href="/orders/<%= Number(order.id) - 1 %>">Prev ID <-</a>
+        </div>
+      </section>
+    </main>
+    <footer class="ivl-footer">Keep iterating IDs or Burp intruder to harvest the hidden flag.</footer>
+  </div>
+  <script src="/public/app.js" defer></script>
+</body>
+</html>

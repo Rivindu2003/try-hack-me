@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public Comments - Intentionally Vulnerable Lab</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body class="ivl-body">
+  <a class="ivl-skip-link" href="#ivl-main">Skip to main content</a>
+  <div class="ivl-shell">
+    <header class="ivl-header">
+      <div class="ivl-header-inner">
+        <a class="ivl-brand" href="/">
+          <img src="/public/assets/logo.svg" alt="Intentionally Vulnerable Lab logo">
+          <span>Intentionally Vulnerable Lab</span>
+        </a>
+        <nav class="ivl-nav" aria-label="Primary">
+          <ul class="ivl-nav-list">
+            <li><a class="ivl-nav-link" href="/">Home</a></li>
+            <li><a class="ivl-nav-link" href="/login">Login</a></li>
+            <li><a class="ivl-nav-link" href="/comments">Comments</a></li>
+            <li><a class="ivl-nav-link" href="/orders/1">Orders</a></li>
+            <li><a class="ivl-nav-link" href="/upload">Upload</a></li>
+            <li><a class="ivl-nav-link" href="/public/flag_easy.txt">Easy Flag</a></li>
+          </ul>
+          <button type="button" class="ivl-theme-toggle" data-ivl-theme-toggle aria-pressed="false">
+            <span class="ivl-theme-toggle__icon" data-ivl-theme-icon><img src="/public/assets/icon-moon.svg" alt="" aria-hidden="true"></span>
+            <span class="ivl-theme-toggle__label" data-ivl-theme-label>Dark mode</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="ivl-main" id="ivl-main">
+      <header class="ivl-section ivl-card ivl-card--accent ivl-stack" aria-labelledby="ivl-comments-title">
+        <div>
+          <h1 class="ivl-heading-xl" id="ivl-comments-title">Community comments</h1>
+          <p class="ivl-muted">Drop payloads, test sanitisation, and observe how the admin console renders items without escaping.</p>
+        </div>
+        <% if (user) { %>
+          <form class="ivl-form" method="POST" action="/comments">
+            <div class="ivl-field">
+              <label class="ivl-label" for="content">Comment</label>
+              <textarea class="ivl-textarea" id="content" name="content" rows="3" placeholder="Leave a message or malicious payload" data-ivl-autogrow></textarea>
+            </div>
+            <div>
+              <button class="ivl-button" type="submit">Post comment</button>
+            </div>
+          </form>
+        <% } else { %>
+          <p class="ivl-status ivl-status--error" role="status">You must <a href="/login">log in</a> to post.</p>
+        <% } %>
+      </header>
+
+      <section class="ivl-section" aria-labelledby="ivl-recent-comments">
+        <div class="ivl-card ivl-stack">
+          <h2 class="ivl-heading-lg" id="ivl-recent-comments">Recent messages</h2>
+          <ul class="ivl-comment-list">
+            <% comments.forEach(comment => { %>
+              <li class="ivl-comment">
+                <strong><%= comment.username || 'anonymous' %></strong>
+                <p><%= comment.content %></p>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <footer class="ivl-footer">Admin review lives at <code class="ivl-mono">/admin/messages</code> - mind the stored XSS.</footer>
+  </div>
+  <script src="/public/app.js" defer></script>
+</body>
+</html>

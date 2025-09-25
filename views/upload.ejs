@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload Center - Intentionally Vulnerable Lab</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body class="ivl-body">
+  <a class="ivl-skip-link" href="#ivl-main">Skip to main content</a>
+  <div class="ivl-shell">
+    <header class="ivl-header">
+      <div class="ivl-header-inner">
+        <a class="ivl-brand" href="/">
+          <img src="/public/assets/logo.svg" alt="Intentionally Vulnerable Lab logo">
+          <span>Intentionally Vulnerable Lab</span>
+        </a>
+        <nav class="ivl-nav" aria-label="Primary">
+          <ul class="ivl-nav-list">
+            <li><a class="ivl-nav-link" href="/">Home</a></li>
+            <li><a class="ivl-nav-link" href="/login">Login</a></li>
+            <li><a class="ivl-nav-link" href="/comments">Comments</a></li>
+            <li><a class="ivl-nav-link" href="/orders/1">Orders</a></li>
+            <li><a class="ivl-nav-link" href="/upload">Upload</a></li>
+            <li><a class="ivl-nav-link" href="/public/flag_easy.txt">Easy Flag</a></li>
+          </ul>
+          <button type="button" class="ivl-theme-toggle" data-ivl-theme-toggle aria-pressed="false">
+            <span class="ivl-theme-toggle__icon" data-ivl-theme-icon><img src="/public/assets/icon-moon.svg" alt="" aria-hidden="true"></span>
+            <span class="ivl-theme-toggle__label" data-ivl-theme-label>Dark mode</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="ivl-main" id="ivl-main">
+      <section class="ivl-card ivl-stack" aria-labelledby="ivl-upload-title">
+        <div>
+          <h1 class="ivl-heading-xl" id="ivl-upload-title">Upload anything</h1>
+          <p class="ivl-muted">Multer accepts every file type and keeps original filenames, and the optional executor happily runs `.js` payloads. Lab only chaos; embrace it.</p>
+        </div>
+        <% if (error) { %>
+          <p class="ivl-status ivl-status--error" role="alert"><%= error %></p>
+        <% } %>
+        <% if (message) { %>
+          <p class="ivl-status ivl-status--success" role="status"><%= message %></p>
+        <% } %>
+        <form class="ivl-form" method="POST" action="/upload" enctype="multipart/form-data">
+          <div class="ivl-field">
+            <label class="ivl-label" for="ivl-file-input">Choose file</label>
+            <input class="ivl-file" type="file" id="ivl-file-input" name="file" required>
+          </div>
+          <div>
+            <button class="ivl-button" type="submit">Upload file</button>
+          </div>
+        </form>
+        <p>After uploading, hit <code class="ivl-mono">/uploads/exec?file=&lt;payload.js&gt;</code> to trigger evaluation.</p>
+        <p class="ivl-muted">Uploaded files land in <code class="ivl-mono">public/uploads/</code>. Clean up manually if you need a fresh lab state.</p>
+      </section>
+    </main>
+    <footer class="ivl-footer">RCE on demand - great for demo walk-throughs and defensive blue-team practice.</footer>
+  </div>
+  <script src="/public/app.js" defer></script>
+</body>
+</html>

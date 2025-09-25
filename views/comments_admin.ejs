@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Comments - Intentionally Vulnerable Lab</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body class="ivl-body">
+  <a class="ivl-skip-link" href="#ivl-main">Skip to main content</a>
+  <div class="ivl-shell">
+    <header class="ivl-header">
+      <div class="ivl-header-inner">
+        <a class="ivl-brand" href="/">
+          <img src="/public/assets/logo.svg" alt="Intentionally Vulnerable Lab logo">
+          <span>Intentionally Vulnerable Lab</span>
+        </a>
+        <nav class="ivl-nav" aria-label="Primary">
+          <ul class="ivl-nav-list">
+            <li><a class="ivl-nav-link" href="/">Home</a></li>
+            <li><a class="ivl-nav-link" href="/comments">Comments</a></li>
+            <li><a class="ivl-nav-link" href="/admin/messages">Admin inbox</a></li>
+          </ul>
+          <button type="button" class="ivl-theme-toggle" data-ivl-theme-toggle aria-pressed="false">
+            <span class="ivl-theme-toggle__icon" data-ivl-theme-icon><img src="/public/assets/icon-moon.svg" alt="" aria-hidden="true"></span>
+            <span class="ivl-theme-toggle__label" data-ivl-theme-label>Dark mode</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="ivl-main" id="ivl-main">
+      <section class="ivl-card ivl-stack" aria-labelledby="ivl-admin-comments">
+        <div>
+          <h1 class="ivl-heading-xl" id="ivl-admin-comments">Admin comment review</h1>
+          <p class="ivl-muted">Rendered with EJS&apos;s raw output tag on purpose - expect stored XSS to trigger. Open DevTools before you browse.</p>
+        </div>
+        <p id="admin-flag" class="ivl-status ivl-status--success" style="display:none;">THM{flag_xss_2025}</p>
+        <ul class="ivl-comment-list">
+          <% comments.forEach(comment => { %>
+            <li class="ivl-comment">
+              <strong><%= comment.username || 'anonymous' %>:</strong>
+              <!-- VULN: Rendering unescaped content lets attacker HTML/JS execute in the admin browser. -->
+              <div><%- comment.content %></div>
+            </li>
+          <% }); %>
+        </ul>
+      </section>
+    </main>
+    <footer class="ivl-footer">Observe alert triggers here, then discuss mitigation from <code class="ivl-mono">SECURITY.md</code>.</footer>
+  </div>
+  <script src="/public/app.js" defer></script>
+</body>
+</html>

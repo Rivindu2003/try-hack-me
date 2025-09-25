@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Intentionally Vulnerable Lab</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body class="ivl-body">
+  <a class="ivl-skip-link" href="#ivl-main">Skip to main content</a>
+  <div class="ivl-shell">
+    <header class="ivl-header">
+      <div class="ivl-header-inner">
+        <a class="ivl-brand" href="/">
+          <img src="/public/assets/logo.svg" alt="Intentionally Vulnerable Lab logo">
+          <span>Intentionally Vulnerable Lab</span>
+        </a>
+        <nav class="ivl-nav" aria-label="Primary">
+          <ul class="ivl-nav-list">
+            <li><a class="ivl-nav-link" href="/">Home</a></li>
+            <li><a class="ivl-nav-link" href="/login">Login</a></li>
+            <li><a class="ivl-nav-link" href="/comments">Comments</a></li>
+            <li><a class="ivl-nav-link" href="/orders/1">Orders</a></li>
+            <li><a class="ivl-nav-link" href="/upload">Upload</a></li>
+            <li><a class="ivl-nav-link" href="/public/flag_easy.txt">Easy Flag</a></li>
+          </ul>
+          <button type="button" class="ivl-theme-toggle" data-ivl-theme-toggle aria-pressed="false">
+            <span class="ivl-theme-toggle__icon" data-ivl-theme-icon><img src="/public/assets/icon-moon.svg" alt="" aria-hidden="true"></span>
+            <span class="ivl-theme-toggle__label" data-ivl-theme-label>Dark mode</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="ivl-main" id="ivl-main">
+      <section class="ivl-card ivl-stack" aria-labelledby="ivl-login-title">
+        <div>
+          <h1 class="ivl-heading-xl" id="ivl-login-title">Access the Lab</h1>
+          <p class="ivl-muted">Reminder: the login routine is intentionally vulnerable to SQL injection - perfect for credential stuffing practice.</p>
+        </div>
+        <% if (error) { %>
+          <p class="ivl-status ivl-status--error" role="alert"><%= error %></p>
+        <% } %>
+        <form class="ivl-form" method="POST" action="/login">
+          <div class="ivl-field">
+            <label class="ivl-label" for="username">Username</label>
+            <input class="ivl-input" type="text" id="username" name="username" required autocomplete="username">
+          </div>
+          <div class="ivl-field">
+            <label class="ivl-label" for="password">Password</label>
+            <input class="ivl-input" type="password" id="password" name="password" required autocomplete="current-password">
+          </div>
+          <div>
+            <button class="ivl-button" type="submit">Login</button>
+          </div>
+        </form>
+        <p class="ivl-muted">Need sample creds? Try <code class="ivl-mono">admin / adminpass</code>.</p>
+      </section>
+    </main>
+    <footer class="ivl-footer">Built for breakout rooms and local ranges. Vulnerabilities stay on.</footer>
+  </div>
+  <script src="/public/app.js" defer></script>
+</body>
+</html>
