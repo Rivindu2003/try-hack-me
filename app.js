@@ -20,6 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.get('/robots.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
+});
 
 const uploadStorage = multer.diskStorage({
   destination: (req, file, cb) => {

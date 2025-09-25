@@ -22,7 +22,6 @@
             <li><a class="ivl-nav-link" href="/comments">Comments</a></li>
             <li><a class="ivl-nav-link" href="/orders/1">Orders</a></li>
             <li><a class="ivl-nav-link" href="/upload">Upload</a></li>
-            <li><a class="ivl-nav-link" href="/public/flag_easy.txt">Easy Flag</a></li>
           </ul>
           <button type="button" class="ivl-theme-toggle" data-ivl-theme-toggle aria-pressed="false">
             <span class="ivl-theme-toggle__icon" data-ivl-theme-icon><img src="/public/assets/icon-moon.svg" alt="" aria-hidden="true"></span>
@@ -35,12 +34,11 @@
       <section class="ivl-card ivl-stack" aria-labelledby="ivl-flags-title">
         <div>
           <h1 class="ivl-heading-xl" id="ivl-flags-title">Capture checklist</h1>
-          <p class="ivl-muted">Every flag intentionally leaks through an insecure pattern. Use this tracker while guiding students; no spoilers beyond what the lab already documents.</p>
         </div>
         <div class="ivl-flag-grid" role="list">
           <article class="ivl-flag-card" role="listitem">
             <h2 class="ivl-heading-md">1. Easy flag</h2>
-            <p class="ivl-muted">Static file: <a href="/public/flag_easy.txt">/public/flag_easy.txt</a></p>
+            <p class="ivl-muted">Find static file flag_easy.txt</p>
           </article>
           <article class="ivl-flag-card" role="listitem">
             <h2 class="ivl-heading-md">2. SQL injection</h2>
@@ -56,13 +54,11 @@
           </article>
           <article class="ivl-flag-card" role="listitem">
             <h2 class="ivl-heading-md">5. Admin secret</h2>
-            <p class="ivl-muted">Once you hijack admin, fetch <code class="ivl-mono">/admin/secret.txt</code>.</p>
+            <p class="ivl-muted">Craft JS payload to get access to admin/secret.txt</p>
           </article>
         </div>
-        <p class="ivl-muted">Need the full walkthrough? See <code class="ivl-mono">walkthrough.md</code> inside the repo.</p>
       </section>
     </main>
-    <footer class="ivl-footer">Reset the lab by clearing <code class="ivl-mono">data.db</code> and <code class="ivl-mono">public/uploads/</code>.</footer>
   </div>
   <script src="/public/app.js" defer></script>
 </body>

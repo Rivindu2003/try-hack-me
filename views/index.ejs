@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Intentionally Vulnerable Lab</title>
+  <title>Rivindu's Vulnerable Lab</title>
   <link rel="stylesheet" href="/public/styles.css">
 </head>
 <body class="ivl-body">
@@ -12,9 +12,12 @@
     <header class="ivl-header">
       <div class="ivl-header-inner">
         <a class="ivl-brand" href="/">
-          <img src="/public/assets/logo.svg" alt="Intentionally Vulnerable Lab logo">
-          <span>Intentionally Vulnerable Lab</span>
+          <img src="/public/assets/logo.svg" alt="Rivindu's Vulnerable Lab logo">
+          <span>Rivindu's Vulnerable Lab</span>
         </a>
+
+        <!-- Flag is somewhere instructions meant for automated site crawlers -->
+
         <nav class="ivl-nav" aria-label="Primary">
           <ul class="ivl-nav-list">
             <li><a class="ivl-nav-link" href="/">Home</a></li>
@@ -22,7 +25,6 @@
             <li><a class="ivl-nav-link" href="/comments">Comments</a></li>
             <li><a class="ivl-nav-link" href="/orders/1">Orders</a></li>
             <li><a class="ivl-nav-link" href="/upload">Upload</a></li>
-            <li><a class="ivl-nav-link" href="/public/flag_easy.txt">Easy Flag</a></li>
           </ul>
           <button type="button" class="ivl-theme-toggle" data-ivl-theme-toggle aria-pressed="false">
             <span class="ivl-theme-toggle__icon" data-ivl-theme-icon><img src="/public/assets/icon-moon.svg" alt="" aria-hidden="true"></span>
@@ -33,15 +35,8 @@
     </header>
     <main class="ivl-main" id="ivl-main">
       <section class="ivl-card ivl-card--accent ivl-hero" aria-labelledby="ivl-home-title">
-        <h1 class="ivl-heading-xl" id="ivl-home-title">Welcome to the Intentionally Vulnerable Lab</h1>
-        <p class="ivl-muted">Hands-on practice for spotting and exploiting common web vulnerabilities. Hosted locally for training only. Never expose this stack to the public Internet.</p>
-        <div class="ivl-cta-row" role="group" aria-label="Quick actions">
-          <a class="ivl-pill" href="/login">Authenticate -></a>
-          <a class="ivl-pill" href="/comments">Stored XSS Arena</a>
-          <a class="ivl-pill" href="/upload">File Upload Gauntlet</a>
-          <a class="ivl-pill" href="/orders/1">IDOR Playground</a>
-          <a class="ivl-pill" href="/config?debug=1">Debug Config Leak</a>
-        </div>
+        <h1 class="ivl-heading-xl" id="ivl-home-title">Welcome to the Rivindu's Vulnerable Lab Env</h1>
+        <p class="ivl-muted">Hands-on practice for spotting and exploiting common web vulnerabilities. Hosted locally for training only.</p>
       </section>
 
       <section class="ivl-section">
@@ -59,14 +54,6 @@
               <% } else { %>
                 <p class="ivl-muted">You are not authenticated. Head to the login page to begin.</p>
               <% } %>
-            </div>
-            <div>
-              <h3 class="ivl-heading-md">Default credentials</h3>
-              <ul class="ivl-inline-list">
-                <li><span class="ivl-mono">alice / alicepass</span></li>
-                <li><span class="ivl-mono">bob / bobpass</span></li>
-                <li><span class="ivl-mono">admin / adminpass</span></li>
-              </ul>
             </div>
           </article>
 
@@ -98,7 +85,7 @@
           <div class="ivl-flag-grid" role="list">
             <div class="ivl-flag-card" role="listitem">
               <h3 class="ivl-heading-md">Public</h3>
-              <p class="ivl-muted"><a href="/public/flag_easy.txt">flag_easy.txt</a></p>
+              <p class="ivl-muted">flag_easy.txt</p>
             </div>
             <div class="ivl-flag-card" role="listitem">
               <h3 class="ivl-heading-md">SQLi</h3>
